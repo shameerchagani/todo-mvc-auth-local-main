@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Todos App:</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../css/todos.css">
+</head>
+
+<body>
+    <header>
+        <h1>Todo List App</h1>
+        <ul>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </header>
+    <main>
+    
+    <section class="welcome">
+        <h4>Welcome <%= user.userName.toUpperCase() %> (<span title="Pending Task(s)"><%= left %></span>)</h4>
+    </section>    
+
+    <section class="frm-section">
+        <form action="/todos/createTodo" method='POST'>
+            <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+            <input type="submit" value="Add Task">
+        </form>
+    </section>
+    
+    <section class="todos">
+        <ul>
+            <% todos.forEach( el => { %>
+            <li class='todoItem' data-id='<%=el._id%>'>
+                <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                <span class='del'><i class="fas fa-trash"></i></span>
+            </li>
+            <% }) %>
+        </ul>
+    </section>
+</main>
+    <footer>
+        <p>All Rights &copy; Reserved</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
